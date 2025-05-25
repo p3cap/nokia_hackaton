@@ -22,10 +22,8 @@ def dice_combo(min_val, max_val):
 							if d2:
 								parts.append(f"{n2}d{d2}")
 							expr = '+'.join(parts)
-							if offset > 0:
-								expr += f"+{offset}"
-							elif offset < 0:
-								expr += f"{offset}"
+							if offset != 0:
+								expr += f"+{offset}" 
 							num_dice = n1 + (n2 if d2 else 0)
 							if expression is None or num_dice < dice:
 								expression = expr

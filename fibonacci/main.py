@@ -2,7 +2,7 @@
 def fibonacci_div_3(n:int):
   #validating
   try: 
-    n = int(float(n))
+    n = int(n)
   except:
     return []
 
@@ -11,7 +11,7 @@ def fibonacci_div_3(n:int):
   while num <= n:
     if num % 3 == 0:
       result.append(num)
-    num, upcoming = upcoming, num + upcoming #fibonacci sequence: "each number is equal to the sum of the preceding two numbers"
+    num, upcoming = upcoming, num + upcoming #fibonacci sequence
     
   return result
 
@@ -22,4 +22,3 @@ if __name__ == "__main__": #ha egyensen ezt a fájlt inditjuk el (nem indul el h
   for line in input.strip().splitlines():
     result = [str(item) for item in fibonacci_div_3(line)] #stringify
     print(', '.join(result) if result else "N/A")
-
