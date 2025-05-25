@@ -2,7 +2,7 @@ def decode_signal(signal_events):
 	sum_up = {} #sums up all possible events wiht duplicates for each signal as a key
 	for numbers, letters in signal_events:
 		for num in numbers:
-			if num not in sum_up: #create list for signal, if there isn't one
+			if num not in sum_up:
 				sum_up[num] = [] 
 			sum_up[num].extend(letters) # add the possible events to it
 

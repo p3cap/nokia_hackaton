@@ -1,8 +1,10 @@
 ## fibonacci numbers divideable by 3
 def fibonacci_div_3(n:int):
   #validating
-  if n.isnumeric(): n = int(n)
-  else: return []
+  try: 
+    n = int(float(n))
+  except:
+    return []
 
   num, upcoming = 0, 1 #first and next possible sulution
   result = []

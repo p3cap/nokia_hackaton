@@ -14,8 +14,7 @@ print('4.: 1')
 """
 x1 = 1
 x2 = -1
-Manuálisan kibróbáltam, illetve brute force programmal 1 millió számon leteszteltem és
-
+Manuálisan kibróbáltam alap számokkal...
 """
 print('5.: 150')
 """

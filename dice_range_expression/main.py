@@ -1,41 +1,41 @@
 dice_sizes = [20, 10, 8, 6, 4, 3, 2]
 
 def dice_combo(min_val, max_val):
-	target_range = max_val - min_val + 1
-	best = None  # (number_of_dice, expression)
+	expression = None
+	dice = None
 
 	for d1 in dice_sizes:
-		for n1 in range(1, 21):
+		for n1 in range(1, 11):
 			for d2 in [None] + dice_sizes:
-				for n2 in range(1, 21 if d2 else 2):
-					if d2:
-						min_sum = n1 + n2
-						max_sum = n1 * d1 + n2 * d2
-					else:
-						min_sum = n1
-						max_sum = n1 * d1
+				for n2 in range(1, 11 if d2 else 2):
+					#raw min/max
+					raw_min = n1 + (n2 if d2 else 0)
+					raw_max = n1 * d1 + (n2 * d2 if d2 else 0)
 
-					if max_sum - min_sum + 1 < target_range:
-						continue
+					#offset
+					for offset in range(-20, 21):
+						min_sum = raw_min + offset
+						max_sum = raw_max + offset
 
-					offset = min_val - min_sum
-					if min_sum + offset == min_val and max_sum + offset == max_val:
-						parts = [f"{n1}d{d1}"]
-						if d2:
-							parts.append(f"{n2}d{d2}")
-						expr = '+'.join(parts)
-						if offset > 0:
-							expr += f"+{offset}"
-						elif offset < 0:
-							expr += f"{offset}"
-						num_dice = n1 + (n2 if d2 else 0)
-						if best is None or num_dice < best[0]:
-							best = (num_dice, expr)
-	return best[1] if best else "Nincs megoldás"
+						if min_sum == min_val and max_sum == max_val:
+							parts = [f"{n1}d{d1}"]
+							if d2:
+								parts.append(f"{n2}d{d2}")
+							expr = '+'.join(parts)
+							if offset > 0:
+								expr += f"+{offset}"
+							elif offset < 0:
+								expr += f"{offset}"
+							num_dice = n1 + (n2 if d2 else 0)
+							if expression is None or num_dice < dice:
+								expression = expr
+								dice = num_dice
 
-with open('./input.txt', 'r') as f:
-	input = f.read()
+	return expression if expression else "Nincs megoldás"
 
-for line in input.strip().splitlines():
-	a, b = map(int, line.strip().split())
-	print(dice_combo(a, b))
+if __name__ == "__main__": #ha egyensen ezt a fájlt inditjuk el (nem indul el ha esetleg imoprtálva van)
+	with open('./input.txt', 'r') as f:
+		for line in f:
+			min_max = line.strip().split()
+			min_val,max_val = int(min_max[0]), int(min_max[1])
+			print(dice_combo(min_val, max_val))
