@@ -1,4 +1,4 @@
-print('1.:')
+print('1.: 5')
 """
 
 """
@@ -14,7 +14,7 @@ print('4.: 1')
 """
 x1 = 1
 x2 = -1
-Manuálisan kibróbáltam alap számokkal...
+Manuálisan kibróbáltam alap számokkal... illetve brute force programmal biztosra mentem (with sympy)
 """
 print('5.: 150')
 """
