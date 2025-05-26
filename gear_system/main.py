@@ -37,5 +37,5 @@ if __name__ == "__main__": #ha egyensen ezt a fájlt inditjuk el (nem indul el h
   with open("input.txt") as f:
     for line in f:
       target, limit = get_instruction(line)
-      result = [] if not target or not limit else search(target, limit)
+      result = [] if not target or not limit else search(target, limit)#on valid input, run the search
       print(" ".join(result) if result else "Megoldhatatlan")
