@@ -1,36 +1,41 @@
+from collections import Counter
+
 def decode_signal(signal_events):
-	sum_up = {} #sums up all possible events wiht duplicates for each signal as a key
+	sum_up = {}  # signal -> all possible events (with duplicates)
+
 	for numbers, letters in signal_events:
 		for num in numbers:
 			if num not in sum_up:
-				sum_up[num] = [] 
-			sum_up[num].extend(letters) # add the possible events to it
+				sum_up[num] = []
+			sum_up[num].extend(letters)
 
-	used = []
-	decoded = {} #selects most common letters in each list
-	
-	for code in sorted(sum_up):
-		counts = {}
-		for letter in sum_up[code]:
-			if letter not in counts:
-				counts[letter] = 0
-			counts[letter] += 1
+	decoded = {}
+	used_events = set()
 
-		#pick the most common letter thats not used yet
-		best = None
-		best_count = -1
-		for letter in counts:
-			if letter not in used and counts[letter] > best_count:
-				best = letter
-				best_count = counts[letter]
+	while len(decoded) < len(sum_up):
+		progress = False
 
-		decoded[code] = best if best else '?'
-		if best:
-			used.append(best)
+		for signal, events in sum_up.items():
+			if signal in decoded:
+				continue
+
+			counts = Counter(e for e in events if e not in used_events)
+			if not counts:
+				continue
+
+			# Pick the most common remaining event
+			event, _ = counts.most_common(1)[0]
+			decoded[signal] = event
+			used_events.add(event)
+			progress = True
+
+		if not progress:
+			break
+
 	return decoded
 
-if __name__ == "__main__": #ha egyensen ezt a fájlt inditjuk el (nem indul el ha esetleg imoprtálva van)
-	with open('./input.txt', 'r') as f:
+if __name__ == "__main__":
+	with open("input.txt", "r") as f:
 		raw = f.read()
 
 	decoded = decode_signal(eval(raw))
