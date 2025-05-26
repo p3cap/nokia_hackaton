@@ -43,8 +43,10 @@ def dice_combo(min_val, max_val):
 
 	return best[1] if best else "Nincs megoldás"
 
-if __name__ == "__main__":
-	with open("input.txt", "r") as f:
+
+if __name__ == "__main__": #ha egyensen ezt a fájlt inditjuk el (nem indul el ha esetleg imoprtálva van)
+	with open('./input.txt', 'r') as f:
 		for line in f:
-			a, b = map(int, line.strip().split())
-			print(dice_combo(a, b))
+			min_max = line.strip().split()
+			min_val,max_val = int(min_max[0]), int(min_max[1])
+			print(dice_combo(min_val, max_val))

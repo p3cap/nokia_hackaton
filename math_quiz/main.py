@@ -1,13 +1,54 @@
+"""
+√ - sqrt()
+"""
+
 print('1.: 5')
 """
 
 """
-print('2.:')
+print('2.: 1.513')
 """
+(4^x + 6^x = 9^x)
 
+4 = 2^2
+6 = 2x3
+9 = 3^2
+
+(2^2)^x + (2x3)^x = (3^2)^x
+2^(2x) + 2^x * 3^x = 3^(2x)
+
+a = 2^x
+b = 3^x
+
+=> a^2 + ab = b^2 => a^2 + ab - b^2 = 0
+
+Másodfokú egyenlet:
+a = (-b +- √(b^2 + 4b^2)) / 2
+a/b = (-1 +- √5) / 2
+(2^x / 3^x) = (-1 +- √5) / 2
+
+x * log(2/3) = log((-1 + √5) / 2)
+x = log((-1 + √5) / 2) / log(2/3)
+x ~= 1.513
 """
-print('3.:')
+print('3.: 9')
 """
+teleszkopikus összeg
+
+'átlagos eset': 1 / (√n + √(n+1))
+
+1 / (√n + √(n+1)) * (√(n+1) - √n) / (√(n+1) - √n)
+= (√(n+1) - √n) / ((√n + √(n+1))(√(n+1) - √n))
+= (√(n+1) - √n) / ((n+1) - n)
+= √(n+1) - √n
+
+1 / (√n + √(n+1)) = √(n+1) - √n
+
+=> (√2 - √1) + (√3 - √2) + (√4 - √3) + ... + (√100 - √99)
+
+láncolt kivonás -> minden középső tag kiesik:
+
+= √100 - √1 = 10 - 1 = 9
 
 """
 print('4.: 1')
@@ -45,4 +86,13 @@ z = 10-x = 7kg
 
 x+y+z = 3 + 17 + 7 = 27kg
 """
-print('7.:')
+print('7.: 0.54')
+"""
+Anna nyer, ha először dob 6-ost, ami 1/6 esély. 
+Ha egyikük sem dob 6ost az első két dobásban, újra kezdődik a játék ugyanonnan, 
+tehát az esély megismétlődik. 
+P := esély
+P = 1/6 + (5/6 * 5/6) * P.
+
+P ~= 0.54.
+"""
