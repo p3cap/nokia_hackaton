@@ -2,9 +2,14 @@
 √ - sqrt()
 """
 
-print('1.: ')
+print('1.: 5')
 """
+Távolság képlettel:
 
+(R-1)^2+(R-2)^2=R^2
+=>R^2R+5 = 0
+R1 = 5
+R2 = 1 (nem realisztikus az ábrához)
 """
 print('2.: 1.513')
 """
